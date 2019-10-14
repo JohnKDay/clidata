@@ -5,7 +5,23 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 echo 'ubuntu ALL=(ALL:ALL) NOPASSWD:ALL' | sudo EDITOR='tee -a' visudo
 echo 'root ALL=(ALL:ALL) NOPASSWD:ALL' | sudo EDITOR='tee -a' visudo
 
+sudo apt-get update
+sudo apt-get install --no-install-recommends -y \
+        ca-certificates \
+        git \
+        make \
+        jq \
+        nmap \
+        curl \
+        uuid-runtime \
+        bc \
+        ara \
+        tmux
+       
+wget -o ~/.tmux.conf 
 
+git clone https://opendev.org/openstack/openstack-helm-infra.git
+git clone https://opendev.org/openstack/openstack-helm.git
 
 patch -p1 << EOL
 diff --git a/tools/images/kubeadm-aio/assets/opt/playbooks/vars.yaml b/tools/images/kubeadm-aio/assets/opt/playbooks/vars.yaml
