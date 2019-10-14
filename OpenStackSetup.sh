@@ -18,10 +18,14 @@ sudo apt-get install --no-install-recommends -y \
         ara \
         tmux
        
-wget -o ~/.tmux.conf 
+wget -O ~/.tmux.conf https://raw.githubusercontent.com/JohnKDay/clidata/master/tmux.conf
+
+cd ~
 
 git clone https://opendev.org/openstack/openstack-helm-infra.git
 git clone https://opendev.org/openstack/openstack-helm.git
+
+cd openstack-helm-infra
 
 patch -p1 << EOL
 diff --git a/tools/images/kubeadm-aio/assets/opt/playbooks/vars.yaml b/tools/images/kubeadm-aio/assets/opt/playbooks/vars.yaml
@@ -56,5 +60,7 @@ index 17038fa..551c325 100644
        fqdn_testing: false
        ingress_ip: 127.0.0.1
 EOL
+
+cd ~
 
 
